@@ -3,24 +3,11 @@ Langevin
 ========
 
 
-.. image:: https://img.shields.io/pypi/v/langevin.svg
-        :target: https://pypi.python.org/pypi/langevin
-
 .. image:: https://img.shields.io/travis/chuangshi167/langevin.svg
         :target: https://travis-ci.org/chuangshi167/langevin
 
-.. image:: https://readthedocs.org/projects/langevin/badge/?version=latest
-        :target: https://langevin.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
-
-
-.. image:: https://pyup.io/repos/github/chuangshi167/langevin/shield.svg
-     :target: https://pyup.io/repos/github/chuangshi167/langevin/
-     :alt: Updates
-
-
 .. image:: https://coveralls.io/repos/github/chuangshi167/Langevin/badge.svg?branch=master
-:target: https://coveralls.io/github/chuangshi167/Langevin?branch=master
+	:target: https://coveralls.io/github/chuangshi167/Langevin?branch=master
 
 
 
