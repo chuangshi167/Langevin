@@ -19,6 +19,11 @@ Langevin
      :alt: Updates
 
 
+.. image:: https://coveralls.io/repos/github/chuangshi167/Langevin/badge.svg?branch=master
+:target: https://coveralls.io/github/chuangshi167/Langevin?branch=master
+
+
+
 
 Python Boilerplate contains all the boilerplate you need to create a Python package.
 
