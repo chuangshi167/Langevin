@@ -24,6 +24,7 @@ before_install:
 script:
 - coverage run --source = langevin/langevin.py setup.py test
 - coverage report -m
+after_success: coveralls
 after_success:
 - coveralls
 # Assuming you have installed the travis-ci CLI tool, after you
