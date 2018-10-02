@@ -3,11 +3,11 @@ Langevin
 ========
 
 
-.. image:: https://img.shields.io/travis/chuangshi167/Langevin.svg
-        :target: https://travis-ci.org/chuangshi167/Langevin
+.. image:: https://img.shields.io/travis/chuangshi167/langevin.svg
+        :target: https://travis-ci.org/chuangshi167/langevin
 
-.. image:: https://coveralls.io/repos/github/chuangshi167/Langevin/badge.svg?branch=master
-	:target: https://coveralls.io/github/chuangshi167/Langevin?branch=master
+.. image:: https://coveralls.io/repos/github/chuangshi167/langevin/badge.svg?branch=master
+	:target: https://coveralls.io/github/chuangshi167/langevin?branch=master
 
 
 
