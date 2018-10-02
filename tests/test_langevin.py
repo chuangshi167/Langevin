@@ -9,9 +9,15 @@ from click.testing import CliRunner
 
 from langevin import langevin
 from langevin import cli
-
-
 @pytest.fixture
+def test_drag_force():
+	"""
+	unit test for testing the function drag_force
+	"""
+	dragForce = drag_force(2, 3)
+	assert dragForce == -6
+	dragForce2 = drag_force(2.5, 2.5)
+	assert dragFOrce2 == -2.5 * 2.5 
 def response():
     """Sample pytest fixture.
 
@@ -21,7 +27,7 @@ def response():
     # return requests.get('https://github.com/audreyr/cookiecutter-pypackage')
 
 
-def test_content(response):
+def test_content():
     """Sample pytest test function with the pytest fixture as an argument."""
     # from bs4 import BeautifulSoup
     # assert 'GitHub' in BeautifulSoup(response.content).title.string
