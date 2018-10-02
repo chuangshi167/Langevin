@@ -35,3 +35,6 @@ def random_force(T, _lambda, k_B = 1, delta = 1):
 	return np.random.normal(0, sigma)
 
 
+def integrator(initial_position, velocity, temperature, damping_coefficient, time_step, total_time):
+	return
+
