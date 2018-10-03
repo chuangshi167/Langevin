@@ -39,28 +39,32 @@ In this simulator, there are a few assumptions made:
 How to use
 ----------
 
-This simulator can be invoked from the terminal, using the following command
+This simulator can be invoked from the terminal, using the following command::
 
-* python langevin/langevin.py
+	 python langevin/langevin.py
  
 There are a few preset parameters that can be modified in the argument.
 
 They are:
 
-| Parameter | Type | Default |
+- initial_position    Type: float default = 0
 
-|-----------|------|---------|
+- initial_velocity    Type: float default = 0
 
-|           |      |         |
+- temperature         Type: float default = 300
 
-|           |      |         |
+- damping_coefficient Type: float default = 0.1
 
-|           |      |         |
+- time_step           Type: float default = 0.01
 
-Features
---------
+- total_time          Type: float default = 1000
 
-* TODO
+- wall_size           Type: float default = 5
+
+- run_times           Type: float default = 100
+
+If you would like to change any of the preset parameters, using the following command::
+	python langevin/langevin.py --initial_position 0 --initial_velocity 0 --temperature 300 --dampig_coefficient 0.1 --time_step 0.01 --total_time 1000 --wall_size 5 --run_times 100
 
 Credits
 -------
