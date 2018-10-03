@@ -8,7 +8,8 @@ import pytest
 import langevin.langevin as langevin
 import random
 import numpy as np
-
+import matplotlib
+import os
 
 class Test(unittest.TestCase):	
 	def test_drag_force(self):
@@ -58,6 +59,36 @@ class Test(unittest.TestCase):
 		for i in range(len(position)):
 			self.assertTrue(position[i] < 5)
 			self.assertTrue(position[i] > -5)
-		
+
+	def test_histogram(self):
+		"""
+		This is the unit test for histogram
+		"""
+		langevin.histogram(10, 100)
+		self.assertTrue(os.path.isfile("Histogram.png"))
+
+	
+	def test_trajectory(self):
+		"""
+		This is the unit test for trajectory function
+		"""
+		time = np.linspace(0, 100, 101)
+		position = np.linspace(-5, 5, 101)
+		langevin.trajectory(time, position)
+		self.assertTrue(os.path.isfile("Trajectory.png"))
+	
+	
+	def test_output(self):
+		"""
+		This is the unit test for output function
+		"""
+		time = np.linspace(0, 100, 101)
+		position = np.linspace(-5, 5, 101)
+		velocity = np.linspace(-1, 1, 101)
+		langevin.output(time, position, velocity)
+		with open("langevin output.txt") as file:
+			line = file.readline()
+			self.assertEqual(line, "index	time	position	velocity \n")
+
 if __name__ == '__main__':
 	unittest.main()

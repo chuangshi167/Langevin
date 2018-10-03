@@ -4,7 +4,9 @@
 
 import numpy as np
 import scipy.stats as ss
-import matplotlib as plt
+import matplotlib.pyplot as plt
+
+
 
 
 def drag_force(gamma, velocity):
@@ -36,6 +38,10 @@ def random_force(T, _lambda, k_B = 1, delta = 1):
 
 
 def integrator(initial_position, initial_velocity, temperature, damping_coefficient, time_step, total_time):
+	"""
+	This function integrate the acceleration of the particle to get the velocity of the particle, and it also integrate the velocity of the particle to obtain the distance travelled.
+	Thhe integration is based on Euler's method.
+	"""
 	intermediates = int(total_time/time_step + 1)
 	time = np.linspace(0, total_time, intermediates)
 	position = np.zeros(intermediates)
@@ -51,4 +57,46 @@ def integrator(initial_position, initial_velocity, temperature, damping_coeffici
 		if not check_range(position[i]):
 			break
 	return time[: i], velocity[: i], position[: i]
+
+
+def histogram(stop_time, run):
+	"""
+	This function generates a histogram
+	"""
+	plt.figure()
+	plt.hist(stop_time, bins = 20)
+	plt.xlabel("Time when hit the wall")
+	plt.ylabel("Times")
+	plt.title("Histogram of {} runs ".format(run))
+	plt.savefig("Histogram.png")
+
+
+def trajectory(time, position):
+	"""
+	This function generates a trajectory
+	"""
+	plt.figure()
+	plt.plot(time, position)
+	plt.xlabel("time")
+	plt.ylabel("position")
+	plt.title("Trajectory")
+	plt.savefig("Trajectory.png")
+
+
+def output(time, position, velocity):
+	"""
+	This function creates a txt file that contains the position and velocity of a particle at a certain time
+	"""
+	file = open("Langevin output.txt", "w+")
+	file.write("index	time	position	velocity \n")
+	for i in range(0, len(time)):
+		file.write("{}	{:.2f}	{:.2f}		{:.2f} \n".format(i, time[i], position[i], velocity[i]))
+	file.close()
+
+
+def parser():
+	"""
+	This function creates a parser for command line
+	"""
+	
 
