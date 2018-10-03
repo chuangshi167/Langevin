@@ -9,8 +9,8 @@ import langevin.langevin as langevin
 import random
 import numpy as np
 import matplotlib
-import os
 matplotlib.use('Agg')
+import os
 
 class Test(unittest.TestCase):	
 	def test_drag_force(self):
