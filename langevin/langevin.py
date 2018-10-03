@@ -5,7 +5,7 @@
 import numpy as np
 import scipy.stats as ss
 import matplotlib.pyplot as plt
-
+import argparse
 
 
 
@@ -94,9 +94,16 @@ def output(time, position, velocity):
 	file.close()
 
 
-def parser():
+def create_parser():
 	"""
 	This function creates a parser for command line
 	"""
-	
-
+	parser = argparse.ArgumentParser(description = "Necessary input for the Langevin Dynamics")	
+	parser.add_argument("--initial_position", type = float, default = 0, help = "Initial position of the particle, default = 0")
+	parser.add_argument("--initial_velocity", type = float, default = 0, help = "Initial velocity of the particle, default = 0")
+	parser.add_argument("--temperature", type = float, default = 300, help = "Temperature of the particle, default = 300")
+	parser.add_argument("--damping_coefficient", type = float, default = 0.1, help = "Damping coefficient of the particle, default = 0.1")
+	parser.add_argument("--time_step", type = float, default = 0.01, help = "Time step of the process, default = 0.01")
+	parser.add_argument("--total_time", type = float, default =1000, help = "Total time of the process, default =1000")
+	args = parser.parse_args()
+	return args

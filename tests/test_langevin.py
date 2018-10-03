@@ -89,6 +89,18 @@ class Test(unittest.TestCase):
 		with open("Langevin output.txt") as file:
 			line = file.readline()
 			self.assertEqual(line, "index	time	position	velocity \n")
+	
 
+	def test_create_parser(self):
+		"""
+		This is the unit test for function creat_parser
+		"""
+		args = langevin.create_parser()
+		self.assertEqual(args.initial_position, 0)
+		self.assertEqual(args.initial_velocity, 0)
+		self.assertEqual(args.temperature, 300)
+		self.assertEqual(args.damping_coefficient, 0.1)
+		self.assertEqual(args.time_step, 0.01)
+		self.assertEqual(args.total_time, 1000)
 if __name__ == '__main__':
 	unittest.main()
