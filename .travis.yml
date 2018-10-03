@@ -18,7 +18,7 @@ before_install:
 - pip install coverage
 - pip install numpy
 - pip install matplotlib
-- pip install scipy
+- pip install argparse
 
 # Command to run tests, e.g. python setup.py test
 script:
