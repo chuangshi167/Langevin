@@ -12,14 +12,15 @@ def drag_force(gamma, velocity):
 	""" 
 	This function calculates the drag force in Langevin Dynamics
 	"""
+	#The equation for drag_force in Langevin Dynamics is -gamma * velocity
 	return -gamma * velocity
 
 
 def check_range(location, wall_size):
 	"""
 	This function tests if the molecule is within the range
-	wall size have to be greater than 0
-	"""	
+	wall size have to be greater than or equal to 0, and be smaller than euqal to wall_size
+	"""
 	if location <= wall_size and location >= 0:
 		return True
 	else:
@@ -28,7 +29,7 @@ def check_range(location, wall_size):
 
 def random_force(T, _lambda, k_B = 1, delta = 1):
 	"""
-	This function generates random random noise (random force), throught the function noise = 2k_B * T * lambda * delta.
+	This function generates random random noise (random force), throught the function variance = 2k_B * T * lambda * delta and the function sigma = sqrt(variance).
 	THe noise is generated normally from the mean, which is 0
 	"""
 	variance = 2 * k_B * T * _lambda * delta
@@ -53,8 +54,10 @@ def integrator(initial_position, initial_velocity, temperature, damping_coeffici
 		dv_over_dt = DragForce + RandomForce
 		velocity[i] = velocity[i - 1] + time_step * dv_over_dt
 		position[i] = position[i - 1] + time_step * velocity[i - 1]
+		#If the particle hits the wall, it will stop the iteration.
 		if not check_range(position[i], wall_size):
 			break
+	#Return three list of particles velocity and position at a certain time, before hitting the wall
 	return time[: i], velocity[: i], position[: i]
 
 
@@ -88,6 +91,7 @@ def output(time, position, velocity):
 	"""
 	file = open("Langevin output.txt", "w+")
 	file.write("index	time	position	velocity \n")
+	#Write the velocity and position of the particle at a certain time, before hitting the wall, into a .txt file"
 	for i in range(0, len(time)):
 		file.write("{}	{:.2f}	{:.2f}		{:.2f} \n".format(i, time[i], position[i], velocity[i]))
 	file.close()
@@ -115,9 +119,11 @@ def main():
 	This is the main function
 	"""
 	args = create_parser()
+	#Three lists that contain the time, position and velocity of each run, as lists
 	time_matrix = []
 	position_matrix = []
 	velocity_matrix = []
+	#A list that stores the time before the particle hit the wall, in each run
 	stop_time = np.zeros(args.run_times)
 	for i in range(args.run_times):
 		time, velocity, position = integrator(args.initial_position, args.initial_velocity, args.temperature, args.damping_coefficient, args.time_step, args.total_time, args.wall_size)
@@ -125,14 +131,16 @@ def main():
 		position_matrix.append(position)
 		velocity_matrix.append(velocity)
 		stop_time[i] = time[-1]
-	
+	#Choose the longest run and get its time, velocity and position data from the previous matrices
 	index = np.argmax(stop_time)
 	maxrun_time = time_matrix[index]
 	maxrun_velocity = velocity_matrix[index]
 	maxrun_position = position_matrix[index]
-	
+	#Generate a output file of the longest run
 	output(maxrun_time, maxrun_position, maxrun_velocity)
+	#Generate a histogram of the runs
 	histogram(stop_time, args.run_times)
+	#Generate a trajectory of the longest run
 	trajectory(maxrun_time, maxrun_position)
 		
 		
