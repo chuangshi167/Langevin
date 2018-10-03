@@ -86,7 +86,7 @@ class Test(unittest.TestCase):
 		position = np.linspace(-5, 5, 101)
 		velocity = np.linspace(-1, 1, 101)
 		langevin.output(time, position, velocity)
-		with open("langevin output.txt") as file:
+		with open("Langevin output.txt") as file:
 			line = file.readline()
 			self.assertEqual(line, "index	time	position	velocity \n")
 
