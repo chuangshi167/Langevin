@@ -3,7 +3,6 @@
 """Main module."""
 
 import numpy as np
-import scipy.stats as ss
 import matplotlib.pyplot as plt
 import argparse
 
