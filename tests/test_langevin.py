@@ -65,7 +65,7 @@ class Test(unittest.TestCase):
 		self.assertEqual(position[0], initial_position)
 		for i in range(len(position)):
 			self.assertTrue(position[i] <=  wall_size)
-			self.assertTrue(position[i] >=  0)
+			self.assertTrue(position[i] >=  -wall_size)
 
 	def test_histogram(self):
 		"""
