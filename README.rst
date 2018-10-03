@@ -67,6 +67,12 @@ If you would like to change any of the preset parameters, using the following co
 
 	python langevin/langevin.py --initial_position 0 --initial_velocity 0 --temperature 300 --dampig_coefficient 0.1 --time_step 0.01 --total_time 1000 --wall_size 5 --run_times 100
 
+Output of the simulator
+-----------------------
+.. image:: Histogram.png
+   :height: 100px
+   :width: 200 px
+   :scale: 50 %
 Credits
 -------
 
