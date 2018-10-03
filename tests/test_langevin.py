@@ -25,7 +25,6 @@ class Test(unittest.TestCase):
 		unit test for testing the function check_range
 		"""
 		self.assertTrue(langevin.check_range(random.random() * 5, 5))
-		self.assertTrue(langevin.check_range(random.random() * -5, 5))
 		self.assertTrue(langevin.check_range(random.random() * 10, 10))
 		self.assertFalse(langevin.check_range(10, 5))
 		self.assertFalse(langevin.check_range(-10, 7))
@@ -65,7 +64,7 @@ class Test(unittest.TestCase):
 		self.assertEqual(position[0], initial_position)
 		for i in range(len(position)):
 			self.assertTrue(position[i] <=  wall_size)
-			self.assertTrue(position[i] >=  -wall_size)
+			self.assertTrue(position[i] >=  0)
 
 	def test_histogram(self):
 		"""
@@ -90,8 +89,8 @@ class Test(unittest.TestCase):
 		This is the unit test for output function
 		"""
 		time = np.linspace(0, 100, 101)
-		position = np.linspace(-5, 5, 101)
-		velocity = np.linspace(-1, 1, 101)
+		position = np.linspace(0, 5, 101)
+		velocity = np.linspace(0, 1, 101)
 		langevin.output(time, position, velocity)
 		with open("Langevin output.txt") as file:
 			line = file.readline()
@@ -111,6 +110,14 @@ class Test(unittest.TestCase):
 		self.assertEqual(args.total_time, 1000)
 
 
+	def test_check_input(self):
+		"""
+		This is the unit test for function create_parser
+		"""
+		args = langevin.create_args()
+		self.assertTrue(langevin.check_input(args))
+
+
 	def test_main(self):
 		"""
 		This is the unit test for function main
@@ -119,6 +126,8 @@ class Test(unittest.TestCase):
 		with open("Langevin output.txt") as file:
                         line = file.readline()
                         self.assertEqual(line, "index	time	position	velocity \n")
+
+	
 
 
 if __name__ == '__main__':
