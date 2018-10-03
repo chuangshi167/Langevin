@@ -18,7 +18,31 @@ Python Boilerplate contains all the boilerplate you need to create a Python pack
 * Free software: MIT license
 * Documentation: https://langevin.readthedocs.io.
 
+Description
+-----------
+This project is for CHE 477, University of Rochester.
+It is a Lagevin Dynamics Simulator for Brownian motion.
+In this simulator, there are a few assumptions made:
+1: The potential force is ignored, and the only two forces acting on the particle of interest are drag force and random force.
+Drag force depends on the damping coefficient and velocity of the particle.
+Random force depends on the temperature and damping coefficient.
 
+2: There is a range in which the particle can move. Once the particle hits the boundary of the range, it stops.
+
+3: The position of the particle at a certain time is calculated based on Euler's method.
+
+
+How to use
+----------
+
+This simulator can be invoked from the terminal, using the following command
+
+python langevin/langevin.py
+
+There are a few preset parameters that can be modified in the argument.
+They are:
+Parameter	Type	Default
+initial position 	float	0
 Features
 --------
 
