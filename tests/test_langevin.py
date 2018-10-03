@@ -2,14 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """Tests for `langevin` package."""
-
+import matplotlib
+matplotlib.use('Agg')
 import unittest
 import pytest
 import langevin.langevin as langevin
 import random
 import numpy as np
-import matplotlib
-matplotlib.use('Agg')
 import os
 
 class Test(unittest.TestCase):	
