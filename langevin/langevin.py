@@ -118,20 +118,7 @@ def check_input(args):
 	"""
 	This function checks if the parameters in the input argument are valid or not
 	"""
-	if args.initial_position < 0 or args.initial_position > args.wall_size:
-		return False
-	if args.initial_velocity < 0:
-		return False
-	if args.temperature <= 0:
-		return False
-	if args.damping_coefficient < 0:
-		return False
-	if args.time_step < 0:
-		return False
-	if args.total_time <= args.time_step:
-		return False
-	if args.run_times < 0:
-		return False
+	if args.initial_position < 0 or args.initial_position > args.wall_size or args.initial_velocity < 0 or args.temperature <= 0 or args.damping_coefficient < 0 or args.time_step < 0 or args.total_time <= args.time_step or args.run_times < 0
 	else:
 		return True
 
