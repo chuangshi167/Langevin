@@ -107,3 +107,33 @@ def create_parser():
 	parser.add_argument("--total_time", type = float, default =1000, help = "Total time of the process, default =1000")
 	args = parser.parse_args()
 	return args
+
+
+def main():
+	"""
+	This is the main function
+	"""
+	args = create_parser()
+	time_matrix = []
+	position_matrix = []
+	velocity_matrix = []
+	stop_time = np.zeros(100)
+	for i in range(100):
+		time, velocity, position = integrator(args.initial_position, args.initial_velocity, args.temperature, args.damping_coefficient, args.time_step, args.total_time)
+		time_matrix.append(time)
+		position_matrix.append(position)
+		velocity_matrix.append(velocity)
+		stop_time[i] = time[-1]
+	
+	index = np.argmax(stop_time)
+	maxrun_time = time_matrix[index]
+	maxrun_velocity = velocity_matrix[index]
+	maxrun_position = position_matrix[index]
+	
+	output(maxrun_time, maxrun_velocity, maxrun_position)
+	histogram(stop_time, 100)
+	trajectory(maxrun_time, maxrun_position)
+		
+		
+if __name__ == '__main__':
+	main()	

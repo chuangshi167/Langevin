@@ -102,5 +102,17 @@ class Test(unittest.TestCase):
 		self.assertEqual(args.damping_coefficient, 0.1)
 		self.assertEqual(args.time_step, 0.01)
 		self.assertEqual(args.total_time, 1000)
+
+
+	def test_main(self):
+		"""
+		This is the unit test for function main
+		"""
+		langevin.main()
+		with open("Langevin output.txt") as file:
+                        line = file.readline()
+                        self.assertEqual(line, "index	time	position	velocity \n")
+
+
 if __name__ == '__main__':
 	unittest.main()
