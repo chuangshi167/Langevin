@@ -39,7 +39,25 @@ class Test(unittest.TestCase):
 		variance = np.var(_random_force)
 		self.assertTrue(mean < 0.2 or mean > -0.2)
 		self.assertTrue(variance > 0.98 * theoretical_value or variance < 1.02 * theoretical_value)
-			
+	def test_integrator(self):
+		"""
+		unit test for testing the function integrator
+		"""
+		initial_position = 0
+		initial_velocity = random.random()
+		temperature = 298
+		damping_coefficient = random.random()
+		time_step = random.random()
+		total_time = 1000
+		time, velocity, position = langevin.integrator(initial_position, initial_velocity, temperature, damping_coefficient, time_step, total_time)
+		self.assertEqual(len(time), len(velocity))
+		self.assertEqual(len(velocity), len(position))
+		self.assertEqual(time[0], 0)
+		self.assertEqual(velocity[0], initial_velocity)
+		self.assertEqual(position[0], initial_position)
+		for i in range(len(position)):
+			self.assertTrue(position[i] < 5)
+			self.assertTrue(position[i] > -5)
 		
 if __name__ == '__main__':
 	unittest.main()
