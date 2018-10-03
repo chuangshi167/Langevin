@@ -47,9 +47,14 @@ There are a few preset parameters that can be modified in the argument.
 
 They are:
 
-Parameter | Type | Default
- --- | --- | ---
-initial position | float | 0
+<!-- TABLE_GENERATE_START -->
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
+
+<!-- TABLE_GENERATE_END -->
 
 
 Features
