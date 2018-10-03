@@ -25,6 +25,7 @@ class Test(unittest.TestCase):
 		unit test for testing the function check_range
 		"""
 		self.assertTrue(langevin.check_range(random.random() * 5, 5))
+		self.assertTrue(langevin.check_range(random.random() * -5, 5))
 		self.assertTrue(langevin.check_range(random.random() * 10, 10))
 		self.assertFalse(langevin.check_range(10, 5))
 		self.assertFalse(langevin.check_range(-10, 7))

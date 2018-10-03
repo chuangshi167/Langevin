@@ -21,18 +21,18 @@ def check_range(location, wall_size):
 	This function tests if the molecule is within the range
 	wall size have to be greater than or equal to 0, and be smaller than euqal to wall_size
 	"""
-	if location <= wall_size and location >= 0:
+	if location <= wall_size and location >= -wall_size:
 		return True
 	else:
 		return False
 
 
-def random_force(T, _lambda, k_B = 1, delta = 1):
+def random_force(T, _lambda, k_B = 1, epsilon = 1):
 	"""
-	This function generates random random noise (random force), throught the function variance = 2k_B * T * lambda * delta and the function sigma = sqrt(variance).
+	This function generates random random noise (random force), throught the function variance = 2k_B * T * lambda * epsilon and the function sigma = sqrt(variance).
 	THe noise is generated normally from the mean, which is 0
 	"""
-	variance = 2 * k_B * T * _lambda * delta
+	variance = 2 * k_B * T * _lambda * epsilon
 	sigma = np.sqrt(variance)
 	return np.random.normal(0, sigma)
 
