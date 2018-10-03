@@ -118,7 +118,7 @@ def check_input(args):
 	"""
 	This function checks if the parameters in the input argument are valid or not
 	"""
-	if args.initial_position < 0 or args.initial_position >= args.wall_size:
+	if args.initial_position < 0 or args.initial_position > args.wall_size:
 		return False
 	if args.initial_velocity < 0:
 		return False
@@ -171,4 +171,4 @@ def main():
 		
 		
 if __name__ == '__main__':
-	main()	
+	main()
