@@ -118,7 +118,8 @@ def check_input(args):
 	"""
 	This function checks if the parameters in the input argument are valid or not
 	"""
-	if args.initial_position < 0 or args.initial_position > args.wall_size or args.initial_velocity < 0 or args.temperature <= 0 or args.damping_coefficient < 0 or args.time_step < 0 or args.total_time <= args.time_step or args.run_times < 0
+	if args.initial_position < 0 or args.initial_position > args.wall_size or args.initial_velocity < 0 or args.temperature <= 0 or args.damping_coefficient < 0 or args.time_step < 0 or args.total_time <= args.time_step or args.run_times < 0:
+		return False
 	else:
 		return True
 
@@ -139,7 +140,7 @@ def main():
 		#A list that stores the time before the particle hit the wall, in each run
 		stop_time = np.zeros(args.run_times)
 		for i in range(args.run_times):
-			time, velocity, position = integrator(args.initial_position, args.initial_velocity, args.temperature, args.damping_coefficient, args.time_step, args.total_time, args.wall_size):
+			time, velocity, position = integrator(args.initial_position, args.initial_velocity, args.temperature, args.damping_coefficient, args.time_step, args.total_time, args.wall_size)
 			time_matrix.append(time)
 			position_matrix.append(position)
 			velocity_matrix.append(velocity)
