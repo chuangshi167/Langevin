@@ -97,9 +97,9 @@ def output(time, position, velocity):
 	file.close()
 
 
-def create_parser():
+def create_args():
 	"""
-	This function creates a parser for command line
+	This function separates the parameters from command line input
 	"""
 	parser = argparse.ArgumentParser(description = "Necessary input for the Langevin Dynamics")	
 	parser.add_argument("--initial_position", type = float, default = 0, help = "Initial position of the particle, default = 0")
@@ -118,7 +118,7 @@ def main():
 	"""
 	This is the main function
 	"""
-	args = create_parser()
+	args = create_args()
 	#Three lists that contain the time, position and velocity of each run, as lists
 	time_matrix = []
 	position_matrix = []

@@ -97,11 +97,11 @@ class Test(unittest.TestCase):
 			self.assertEqual(line, "index	time	position	velocity \n")
 	
 
-	def test_create_parser(self):
+	def test_create_args(self):
 		"""
 		This is the unit test for function creat_parser
 		"""
-		args = langevin.create_parser()
+		args = langevin.create_args()
 		self.assertEqual(args.initial_position, 0)
 		self.assertEqual(args.initial_velocity, 0)
 		self.assertEqual(args.temperature, 300)
