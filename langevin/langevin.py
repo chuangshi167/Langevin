@@ -15,12 +15,12 @@ def drag_force(gamma, velocity):
 	return -gamma * velocity
 
 
-def check_range(location):
+def check_range(location, wall_size):
 	"""
 	This function tests if the molecule is within the range
-	"""
-	
-	if location < 5 and location > -5:
+	wall size have to be greater than 0
+	"""	
+	if location <= wall_size and location >= 0:
 		return True
 	else:
 		return False
@@ -36,7 +36,7 @@ def random_force(T, _lambda, k_B = 1, delta = 1):
 	return np.random.normal(0, sigma)
 
 
-def integrator(initial_position, initial_velocity, temperature, damping_coefficient, time_step, total_time):
+def integrator(initial_position, initial_velocity, temperature, damping_coefficient, time_step, total_time, wall_size = 5):
 	"""
 	This function integrate the acceleration of the particle to get the velocity of the particle, and it also integrate the velocity of the particle to obtain the distance travelled.
 	Thhe integration is based on Euler's method.
@@ -53,7 +53,7 @@ def integrator(initial_position, initial_velocity, temperature, damping_coeffici
 		dv_over_dt = DragForce + RandomForce
 		velocity[i] = velocity[i - 1] + time_step * dv_over_dt
 		position[i] = position[i - 1] + time_step * velocity[i - 1]
-		if not check_range(position[i]):
+		if not check_range(position[i], wall_size):
 			break
 	return time[: i], velocity[: i], position[: i]
 
@@ -64,7 +64,7 @@ def histogram(stop_time, run):
 	"""
 	plt.figure()
 	plt.hist(stop_time, bins = 20)
-	plt.xlabel("Time when hit the wall")
+	plt.xlabel("Time before hitting the wall")
 	plt.ylabel("Times")
 	plt.title("Histogram of {} runs ".format(run))
 	plt.savefig("Histogram.png")
@@ -104,6 +104,8 @@ def create_parser():
 	parser.add_argument("--damping_coefficient", type = float, default = 0.1, help = "Damping coefficient of the particle, default = 0.1")
 	parser.add_argument("--time_step", type = float, default = 0.01, help = "Time step of the process, default = 0.01")
 	parser.add_argument("--total_time", type = float, default =1000, help = "Total time of the process, default =1000")
+	parser.add_argument("--wall_size", type = float, default = 5, help = "The size of the wall, default = 5")
+	parser.add_argument("--run_times", type = int, default = 100, help = "The run times for histogramgeneration, default = 100")
 	args = parser.parse_args()
 	return args
 
@@ -116,9 +118,9 @@ def main():
 	time_matrix = []
 	position_matrix = []
 	velocity_matrix = []
-	stop_time = np.zeros(100)
-	for i in range(100):
-		time, velocity, position = integrator(args.initial_position, args.initial_velocity, args.temperature, args.damping_coefficient, args.time_step, args.total_time)
+	stop_time = np.zeros(args.run_times)
+	for i in range(args.run_times):
+		time, velocity, position = integrator(args.initial_position, args.initial_velocity, args.temperature, args.damping_coefficient, args.time_step, args.total_time, args.wall_size)
 		time_matrix.append(time)
 		position_matrix.append(position)
 		velocity_matrix.append(velocity)
@@ -129,8 +131,8 @@ def main():
 	maxrun_velocity = velocity_matrix[index]
 	maxrun_position = position_matrix[index]
 	
-	output(maxrun_time, maxrun_velocity, maxrun_position)
-	histogram(stop_time, 100)
+	output(maxrun_time, maxrun_position, maxrun_velocity)
+	histogram(stop_time, args.run_times)
 	trajectory(maxrun_time, maxrun_position)
 		
 		
