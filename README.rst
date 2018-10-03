@@ -47,13 +47,16 @@ There are a few preset parameters that can be modified in the argument.
 
 They are:
 
-<!-- TABLE_GENERATE_START -->
-
 | Parameter | Type | Default |
+
 |-----------|------|---------|
+
 |           |      |         |
+
 |           |      |         |
+
 |           |      |         |
+
 Features
 --------
 
